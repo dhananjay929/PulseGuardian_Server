@@ -1,15 +1,17 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS 
 import pickle
 import numpy as np
 
 app = Flask(__name__)
+CORS(app)
 
 # Load the saved model
 with open('model_pickle.pkl', 'rb') as f:
     mp = pickle.load(f)
 @app.route('/')
 def hello():
-    return 'Hello, Flask World!'
+    return 'Hello, Its D.J'
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -18,11 +20,11 @@ def predict():
         input_data_reshaped = input_data_as_numpy_array.reshape(1, -1)
         prediction = mp.predict(input_data_reshaped)
 
+        # print(prediction)
         if prediction[0] == 0:
-            result = 'The Person does not have a Heart Disease'
+            result = 0
         else:
-            result = 'The Person has Heart Disease'
-
+            result = 1
         return jsonify({'result': result})
     except Exception as e:
         return jsonify({'error': str(e)})
