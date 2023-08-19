@@ -19,7 +19,7 @@ except Exception as e:
 
 @app.route('/')
 def hello():
-    return 'Hello, Its D.J'
+    return 'Hello, Its D.J and Aisha'
 
 @app.route('/predict', methods=['POST'])
 def predict():
