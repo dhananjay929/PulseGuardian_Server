@@ -8,7 +8,7 @@ CORS(app)
 
 # Load the saved model
 try:
-    with open('model_pickle.pkl', 'rb') as f:
+    with open('../model_pickle.pkl', 'rb') as f:
         mp = pickle.load(f)
 except FileNotFoundError:
     print("Error: Model file not found.")
